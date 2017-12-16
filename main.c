@@ -1,8 +1,6 @@
 /*main.cpp*/
 
-//
 // Auto-complete search engine program using a binary search tree.
-//
 
 
 // ignore stdlib warnings if working in Visual Studio:
