@@ -19,7 +19,6 @@
 
 #include "bst.h"
 
-
 //
 // BSTCreate: dynamically creates and returns an empty
 // binary search tree:
@@ -65,13 +64,13 @@ BSTNode *BSTSearch(BST *tree, BSTKey key)
   //
   while (cur != NULL)
   {
-    if (BSTCompareKeys(key, cur->Key) == 0)  // found!
+    if (BSTCompareKeys(key, cur->Key) == 0) // found!
       return cur;
-    else if (BSTCompareKeys(key, cur->Key) < 0)  // smaller, go left:
+    else if (BSTCompareKeys(key, cur->Key) < 0) // smaller, go left:
     {
       cur = cur->Left;
     }
-    else  // larger, go right:
+    else // larger, go right:
     {
       cur = cur->Right;
     }
@@ -80,7 +79,6 @@ BSTNode *BSTSearch(BST *tree, BSTKey key)
   // if we get here, we fell out of the tree, and didn't find it:
   return NULL;
 }
-
 
 //
 // BSTSearchDepth: searches the binary search tree for a node containing the
@@ -98,13 +96,13 @@ int BSTSearchDepth(BST *tree, BSTKey key)
   //
   while (cur != NULL)
   {
-    if (BSTCompareKeys(key, cur->Key) == 0)  // found!
+    if (BSTCompareKeys(key, cur->Key) == 0) // found!
       return depth;
-    else if (BSTCompareKeys(key, cur->Key) < 0)  // smaller, go left:
+    else if (BSTCompareKeys(key, cur->Key) < 0) // smaller, go left:
     {
       cur = cur->Left;
     }
-    else  // larger, go right:
+    else // larger, go right:
     {
       cur = cur->Right;
     }
@@ -115,7 +113,6 @@ int BSTSearchDepth(BST *tree, BSTKey key)
   // if we get here, we fell out of the tree, and didn't find it:
   return -1;
 }
-
 
 //
 // BSTInsert: inserts the given (key, value) pair into the binary search
@@ -133,14 +130,14 @@ int BSTInsert(BST *tree, BSTKey key, BSTValue value)
   //
   while (cur != NULL)
   {
-    if (BSTCompareKeys(key, cur->Key) == 0)  // already in tree, failed:
+    if (BSTCompareKeys(key, cur->Key) == 0) // already in tree, failed:
       return 0;
-    else if (BSTCompareKeys(key, cur->Key) < 0)  // smaller, go left:
+    else if (BSTCompareKeys(key, cur->Key) < 0) // smaller, go left:
     {
       prev = cur;
       cur = cur->Left;
     }
-    else  // larger, go right:
+    else // larger, go right:
     {
       prev = cur;
       cur = cur->Right;
@@ -161,43 +158,41 @@ int BSTInsert(BST *tree, BSTKey key, BSTValue value)
   // link T where we fell out of tree -- after prev:
   //        BSTValue value;
 
-  if (prev == NULL)  // tree is empty, insert @ root:
+  if (prev == NULL) // tree is empty, insert @ root:
   {
     tree->Root = T;
   }
-  else if (BSTCompareKeys(key, prev->Key) < 0)  // smaller, insert to left:
+  else if (BSTCompareKeys(key, prev->Key) < 0) // smaller, insert to left:
   {
     prev->Left = T;
   }
-  else  // larger, insert to right:
+  else // larger, insert to right:
   {
     prev->Right = T;
   }
 
   tree->Count++;
 
-  return 1;  // success:
-}
-
+  return 1; // success:
+}//end BSTInsert()
 
 //
 // BSTPrintInorder: prints the nodes of the given binary search
 // tree inorder to the console.
 //
 // NOTE: "pf" is a print function that must be declared like this
-// (though the name "pf" doesn't really matter):
+
 //
-//  void pf(BSTNode *cur)
-//  { ...}
+
 //
 // When you call, pass pf and then you'll be able to control
 // what gets printed when a node is "visited".
 //
-void _BSTPrintInorder(BSTNode *root, void (*pf)(BSTNode*))
+void _BSTPrintInorder(BSTNode *root, void (*pf)(BSTNode *))
 {
-  if (root == NULL)  // base case: empty tree
+  if (root == NULL) // base case: empty tree
     return;
-  else  // recursive case: non-empty tree
+  else // recursive case: non-empty tree
   {
     _BSTPrintInorder(root->Left, pf);
     pf(root);
@@ -205,34 +200,26 @@ void _BSTPrintInorder(BSTNode *root, void (*pf)(BSTNode*))
   }
 }
 
-void BSTPrintInorder(BST *tree, void(*pf)(BSTNode*))
+
+
+void BSTPrintInorder(BST *tree, void (*pf)(BSTNode *))
 {
-  printf(">>Inorder: %d node(s)\n", tree->Count);
+  //printf(">>Inorder: %d node(s)\n", tree->Count);
 
   _BSTPrintInorder(tree->Root, pf);
 
   printf(">><<\n");
 }
 
-
 //
 // BSTPrintPreorder: prints the nodes of the given binary search
 // tree pre-order to the console.
 //
-// NOTE: "pf" is a print function that must be declared like this
-// (though the name "pf" doesn't really matter):
-//
-//  void pf(BSTNode *cur)
-//  { ...}
-//
-// When you call, pass pf and then you'll be able to control
-// what gets printed when a node is "visited".
-//
-void _BSTPrintPreorder(BSTNode *root, void(*pf)(BSTNode*))
+void _BSTPrintPreorder(BSTNode *root, void (*pf)(BSTNode *))
 {
-  if (root == NULL)  // base case: empty tree
+  if (root == NULL) // base case: empty tree
     return;
-  else  // recursive case: non-empty tree
+  else // recursive case: non-empty tree
   {
     pf(root);
     _BSTPrintPreorder(root->Left, pf);
@@ -240,7 +227,7 @@ void _BSTPrintPreorder(BSTNode *root, void(*pf)(BSTNode*))
   }
 }
 
-void BSTPrintPreorder(BST *tree, void(*pf)(BSTNode*))
+void BSTPrintPreorder(BST *tree, void (*pf)(BSTNode *))
 {
   printf(">>Preorder: %d node(s)\n", tree->Count);
 
@@ -248,7 +235,6 @@ void BSTPrintPreorder(BST *tree, void(*pf)(BSTNode*))
 
   printf(">><<\n");
 }
-
 
 //
 // BSTCount: returns # of nodes in the tree.
@@ -281,108 +267,47 @@ int BSTHeight(BST *tree)
 
 BST *BuildTree(char *filename)
 {
-    BST* tree = BSTCreate();
-	FILE *pInputFile;
-	BSTNode * root = NULL;
-	pInputFile = fopen(filename, "r");
-	int returnValue;
-	if (pInputFile == NULL)
-	{
-		printf("Can't open %s. \n", filename); //if file's not there
-		exit(-1);
-	}
-
-	//read in the first line of the file and store it to the count
-	long long weight;
-	char text[512];
-
-	while (fscanf(pInputFile, "%lld", &weight) != EOF)
-	{
-	    fgets(text, 512, pInputFile);
-        text[strcspn(text, "\r\n")] = '\0';  // strip EOL char(s):
-
-        char *cp = text;
-        //skip whitespace
-        while(*cp == ' ' || *cp == '\t')
-        {
-            cp++;
-        }
-        BSTValue value;
-        value.X = (char*) malloc((strlen(cp) + 1) * sizeof(char));
-        strcpy(value.X, cp);
-        value.Y = weight;
-        returnValue = BSTInsert(tree, value.X, value);
-	}
-
-	//done, return:
-	fclose(pInputFile);	//done with file, so close it
-	return tree;
-}
-
-BSTNode *BSTSuggest(BST *tree, BSTKey key)
-{
-  BSTNode *cur = tree->Root;
-  int size = strlen(key);
-  //
-  // search the tree to see if it contains a matching key:
-  //
-  while (cur != NULL)
+  BST *tree = BSTCreate();
+  FILE *pInputFile;
+  pInputFile = fopen(filename, "r");
+  if (pInputFile == NULL)
   {
-    if (strncmp(cur->Key, key, size)==0)  // found!
-      return cur;
-    else if (strncmp(cur->Key, key, size) > 0)  // smaller, go left:
-    {
-      cur = cur->Left;
-    }
-    else  // larger, go right:
-    {
-      cur = cur->Right;
-    }
+    printf("Can't open %s. \n", filename); //if file's not there
+    exit(-1);
   }
-  // if we get here, we fell out of the tree, and didn't find the suggestion starting:
-  return NULL;
+
+  //read in the first line of the file and store it to the count
+  long long weight;
+  char text[512];
+
+  while (fscanf(pInputFile, "%lld", &weight) != EOF)
+  {
+    fgets(text, 512, pInputFile);
+    text[strcspn(text, "\r\n")] = '\0'; // strip EOL char(s):
+
+    char *cp = text;
+    //skip whitespace
+    while (*cp == ' ' || *cp == '\t')
+      cp++;
+
+    BSTValue value;
+    value.X = (char *)malloc((strlen(cp) + 1) * sizeof(char));
+    strcpy(value.X, cp);
+    value.Y = weight;
+    BSTInsert(tree, value.X, value);
+  }
+
+  //done, return:
+  fclose(pInputFile); //done with file, so close it
+  return tree;
 }
 
 
-void BSTFindM(BSTNode * root, char key[512], int *M, int size)
-{
-    if (root == NULL)  // base case: empty tree
-        return;
-    else  // recursive case: non-empty tree
-    {
-        BSTFindM(root->Left, key, M, size);
-        BSTFindM(root->Right, key, M, size);
-        if(strncmp(root->Key, key, size)==0)
-        {
-            //printf("M: %d\n", *M);
-            *M = *M + 1;
-        }
-    }
-}
-
-void BSTFillValues(BSTNode * root, char key[512], int *M, int size, BSTValue * values)
-{
-    if (root == NULL)  // base case: empty tree
-        return;
-    else  // recursive case: non-empty tree
-    {
-        if(strncmp(root->Key, key, size)==0)
-        {
-            //printf("root->Key: %s M: %d \n", root->Key, *M);
-            values[*M] = root->Value;
-            *M = *M - 1;
-        }
-        BSTFillValues(root->Left, key, M, size, values);
-        BSTFillValues(root->Right, key, M, size, values);
-    }
-}
 
 int BSTCount(BSTNode *root)
 {
   if (root == NULL)
     return 0;
   else
-    return 1
-     + BSTCount(root->Left)
-     + BSTCount(root->Right);
+    return 1 + BSTCount(root->Left) + BSTCount(root->Right);
 }
