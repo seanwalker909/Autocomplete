@@ -1,13 +1,7 @@
 
 /*bst.c*/
-
-//
-// Binary Search Tree ADT implementation file.
-//
-// Prof. Joe Hummel
-// U. of Illinois, Chicago
-// CS251, Spring 2017
-//
+//Implementation of the BST ADT.
+//Sean Walker
 
 // ignore stdlib warnings if working in Visual Studio:
 #define _CRT_SECURE_NO_WARNINGS

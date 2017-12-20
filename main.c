@@ -77,17 +77,16 @@ void doAdd(BST *tree, char *text)
     part2[strcspn(part2, "\r\n")] = '\0'; // strip EOL char(s):
     strcat(text, part2);
 
-    //
-    // TODO
-    //
     BSTValue value;
     value.X = (char *)malloc((strlen(text) + 1) * sizeof(char));
+    
     strcpy(value.X, text);
     value.Y = weight;
-
-    if (BSTInsert(tree, value.X, value))
-    {
-        printf("**Added\n");
+    
+    BSTKey key = value.X;
+    
+    if (BSTInsert(tree, key, value))
+    {        printf("**Added\n");
     }
     else
     {
@@ -228,12 +227,6 @@ BSTValue *CollectMatches(BSTNode *traverse, char key[512], int *numberOfNodesWit
     return suggestions;
 } //end CollectMatchesInValuesArray()
 
-//print function used as function pointer in BSTPrintInOrder() function
-void pf(BSTNode *cur)
-{
-    printf("%s\n", cur->Key);
-    return;
-}
 
 //handles suggest command
 //example: if the user enteres...
@@ -271,7 +264,7 @@ void doSuggest(BST *tree, char *text)
         //print k (ammount user entered) suggestions tree
         int x;
         for (x = 0; x < k; x++)
-            printf("%s\n", suggestions[x]);
+            printf("%s - %lld\n", suggestions[x], suggestions[x].Y);
     }
 } //end doSuggest()
 
@@ -287,10 +280,7 @@ int main()
     filename = getFileName();
     BST *tree = BuildTree(filename);
 
-    //
     // now interact with user:
-    //
-
     printf("** Ready **\n");
 
     scanf("%s", cmd);
