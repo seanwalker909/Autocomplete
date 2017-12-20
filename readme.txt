@@ -25,6 +25,25 @@ if the user enteres:
 suggest 5 Chi
 this means they want to be show the top 5 weighted queries that start with the prefix Chi:
 
-Sample Run:
+**Sample Run**
 
+** Starting Autocomplete **
+Please enter a file name: 
+ cities.txt 
+ cities-by-population.txt 
+ fortune1000.txt 
+ fortune1000-by-revenue.txt 
+cities.txt
+** Ready **
+add 4000000 ChinaTown
+**Added
+suggest 5 Chi
+** [Sub-tree root:  (Chittagong, Bangladesh,3920222)]
+** [Sub-tree count: 69]
+** [Num matches:    49]
+ChinaTown - 4000000
+Chittagong, Bangladesh - 3920222
+Chicago, Illinois, United States - 2695598
+Chiba-shi, Japan - 919729
+Chihuahua, Chihuahua, Mexico - 708267
 
